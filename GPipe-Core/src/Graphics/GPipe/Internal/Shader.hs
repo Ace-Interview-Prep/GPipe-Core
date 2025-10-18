@@ -1,6 +1,6 @@
 {-# LANGUAGE MultiParamTypeClasses, TypeFamilies, FlexibleContexts,
   RankNTypes, ExistentialQuantification, GeneralizedNewtypeDeriving,
-  FlexibleInstances, GADTs #-}
+  FlexibleInstances, GADTs, ScopedTypeVariables #-}
 
 module Graphics.GPipe.Internal.Shader (
     Shader(..),
@@ -34,11 +34,15 @@ import Control.Applicative (Applicative, Alternative, (<|>))
 import Control.Monad.Trans.Class (lift)
 import Data.Maybe (fromJust, isJust, isNothing)
 import Control.Monad (MonadPlus, when)
-import Control.Monad.Trans.List (ListT(..))
+
 import Data.Monoid (All(..), mempty)
 import Data.Either
 import Control.Monad.Trans.Reader
 import Data.List (find)
+
+--import ListT (ListT(..), toList)
+--import Control.Monad.Trans.List (ListT(..))
+import Graphics.GPipe.Internal.ListT (ListT(..))
 
 data ShaderState s = ShaderState Int (RenderIOState s)
 
